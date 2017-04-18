@@ -132,6 +132,8 @@ class ScrapedPage(object):
 
     @property
     def scrape_session(self):
+        if 'User-Agent' in self.scrape_headers:
+            SHARED_SESSION.headers['User-Agent'] = self.scrape_headers['User-Agent']
         return SHARED_SESSION
 
     def scrape_fetch(self, url):
